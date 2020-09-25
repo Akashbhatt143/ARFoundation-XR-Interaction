@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AR Interaction.unity
     guid: 2d6e8b5dc7ec6f743aab0ca47242ca6b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AR Interaction With Shadow.unity
     guid: ea551c9792340c148958ff7b288b5e35
+  - enabled: 0
+    path: Assets/Scenes/PlaneDetection/Plane Detection.unity
+    guid: 6f673a9157551504f9ad49a14a20b8a9
+  - enabled: 1
+    path: Assets/Scenes/Object Placement/Object Placement.unity
+    guid: f2158f8a42229b540874665bcfe8255f
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: caf11e20bbaf4974b9a7fc4a6d9cef4e,
       type: 2}
