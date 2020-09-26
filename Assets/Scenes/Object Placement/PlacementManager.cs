@@ -4,17 +4,19 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-[RequireComponent(typeof(ARRaycastManager))]
+[RequireComponent(typeof(ARRaycastManager), typeof(ARAnchorManager))]
 public class PlacementManager : MonoBehaviour
 {
     public GameObject placedPrefab;
     private ARRaycastManager arRaycastManager;
+    private ARAnchorManager arAnchorManager;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Awake()
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
+        arAnchorManager = GetComponent<ARAnchorManager>();
     }
 
     void Update()
@@ -28,7 +30,9 @@ public class PlacementManager : MonoBehaviour
                 if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon))
                 {
                     var hitPose = hits[0].pose;
-                    Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
+                    var anchorPoint = arAnchorManager.AddAnchor(hitPose);
+                    var spawnObject = Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
+                    spawnObject.transform.parent = anchorPoint.transform;
                 }
             }
         }
